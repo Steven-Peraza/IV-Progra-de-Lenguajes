@@ -78,6 +78,27 @@ function updateGameArea() {
     myGameArea.context.fillRect(0, 0, myGameArea.canvas.width, myGameArea.canvas.height);
     myGameArea.context.save();
 
+    if (myGameArea.key && myGameArea.key === 37) {
+        imgTank =imgTankL;
+        mover(3,txAC,tyAC);
+    }
+
+    if (myGameArea.key && myGameArea.key === 39) {
+        imgTank =imgTankR;
+        mover(4,txAC,tyAC);
+    }
+
+    if (myGameArea.key && myGameArea.key === 38) {
+        imgTank =imgTankUP;
+        mover(1,txAC,tyAC);
+    }
+
+    if (myGameArea.key && myGameArea.key === 40) {
+        imgTank =imgTankDW;
+        mover(2,txAC,tyAC);
+    }
+
+
     refresh();
 
     myGameArea.context.restore();

@@ -72,6 +72,36 @@ function Tanque(posx,posy,ancho,alto,tipo) {
         }
         return crash;
     }
+/*
+    this.mover(direccion,posxac,posyac){
+         switch (direccion){
+             case 1: //izquierds
+                 if (nivel.levelActual[posxac-1][posyac] != 0 || posxac != 0){
+                     nivel.levelActual[posxac-1][posyac] = 5;
+                    break;}
+                 else
+                     break;
+             case 2: //derecha
+                 if (nivel.levelActual[posxac+1][posyac] != 0 || posxac != 25){
+                     nivel.levelActual[posxac+1][posyac] = 5;
+                     break;}
+                 else
+                     break;
+             case 3: //arriba
+                 if (nivel.levelActual[posxac][posyac-1] != 0 || posyac != 0){
+                     nivel.levelActual[posxac][posyac-1] = 5;
+                     break;}
+                 else
+                     break;
+             case 4: //abajo
+                 if (nivel.levelActual[posxac][posyac+1] != 0 || posyac != 25){
+                     nivel.levelActual[posxac][posyac+1] = 5;
+                     break;}
+                 else
+                     break;
+         }
 
+    }
+*/
 }
 
