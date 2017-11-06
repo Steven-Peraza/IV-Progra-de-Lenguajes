@@ -2,6 +2,8 @@
 var levelActual;
 var txAC;
 var tyAC;
+var aleaX
+var aleaY
 
 var level1 = [
     [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 1, 0, 0, 0, 0],
@@ -122,6 +124,10 @@ imgTankR.src = "imagenes/tankR.fw.png";
 imgWater = new Image();
 imgWater.src = "imagenes/water.png";
 
+imgIgol = new Image();
+imgIgol.src = "imagenes/igol.fw.png";
+
+
 
 var imgTank;
 imgTank = imgTankUP;
@@ -155,6 +161,7 @@ function refresh() {
                     myGameArea.context.drawImage(imgSteel, 0, 0, iCellSize, iCellSize, x*iCellSize, y*iCellSize, iCellSize, iCellSize);
                     break;
                 case 3:
+                    myGameArea.context.drawImage(imgIgol, 0, 0, iCellSize, iCellSize, x*iCellSize, y*iCellSize, iCellSize, iCellSize);
                     break;
                 case 4:
                     myGameArea.context.drawImage(imgWater, 0, 0, iCellSize, iCellSize, x*iCellSize, y*iCellSize, iCellSize, iCellSize);
@@ -205,4 +212,13 @@ function mover(direccion,posxac,posyac){
                 break;
     }
 
+}
+
+function aguilasRan(){
+    aleaX = Math.floor((Math.random() * 25) + 1);
+    aleaY = Math.floor((Math.random() * 25) + 1);
+    if (levelActual[aleaX][aleaY] === 0 )//comparar con los otros elementos
+        levelActual[aleaX][aleaY] = 3;
+    else
+        aguilasRan();
 }

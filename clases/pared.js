@@ -28,6 +28,6 @@ function Muro(posx,posy,ancho,alto,tipo) {
     };
 
     this.break = function(){
-
+        levelActual[this.posx][this.posy] = null;
     }
 }

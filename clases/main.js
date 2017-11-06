@@ -8,6 +8,8 @@ function startGame() {
     myGameArea.start();
     //myGamePiece = new component(30, 30, "imagenes/brick.png", 10, 120);
     pickLevel(1);
+    aguilasRan();
+    aguilasRan();
     //myGamePiece = new Tanque(10,120,30,30,0);
     //creaBloques();
     //myGamePiece2 = new Tanque(70,120,30,30,1);
