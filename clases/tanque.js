@@ -68,7 +68,14 @@ function Tanque(posx,posy,ancho,alto,tipo) {
                      this.posx = this.posx-1;
                      this.direccion = "UP";
                      //hacer el if de tpo de tanque...
-                     this.image.src = "imagenes/tankU.fw.png";
+                     if (this.nombre === "edelweiss")
+                        this.image.src = "imagenes/tankU.fw.png";
+                     else if (this.nombre === "equus")
+                         this.image.src = "imagenes/inutilU.fw.png";
+                     else if (this.nombre === "lupus")
+                         this.image.src = "imagenes/tigerU.fw.png";
+                     else if (this.nombre === "geirorul")
+                         this.image.src = "imagenes/fastU.fw.png";
                      break;}
                  else
                      break;
@@ -78,8 +85,14 @@ function Tanque(posx,posy,ancho,alto,tipo) {
                      levelActual[this.posx+1][this.posy] = this;
                      this.posx = this.posx+1;
                      this.direccion = "DW";
-                     //hacer el if de tpo de tanque...
-                     this.image.src = "imagenes/tankD.fw.png";
+                     if (this.nombre === "edelweiss")
+                         this.image.src = "imagenes/tankD.fw.png";
+                     else if (this.nombre === "equus")
+                         this.image.src = "imagenes/inutilD.fw.png";
+                     else if (this.nombre === "lupus")
+                         this.image.src = "imagenes/tigerD.fw.png";
+                     else if (this.nombre === "geirorul")
+                         this.image.src = "imagenes/fastD.fw.png";
                      break;}
                  else
                      break;
@@ -89,8 +102,14 @@ function Tanque(posx,posy,ancho,alto,tipo) {
                      levelActual[this.posx][this.posy-1] = this;
                      this.posy = this.posy-1;
                      this.direccion = "LF";
-                     //hacer el if de tpo de tanque...
-                     this.image.src = "imagenes/tankL.fw.png";
+                     if (this.nombre === "edelweiss")
+                         this.image.src = "imagenes/tankL.fw.png";
+                     else if (this.nombre === "equus")
+                         this.image.src = "imagenes/inutilL.fw.png";
+                     else if (this.nombre === "lupus")
+                         this.image.src = "imagenes/tigerL.fw.png";
+                     else if (this.nombre === "geirorul")
+                         this.image.src = "imagenes/fastL.fw.png";
                      break;}
                  else
                      break;
@@ -100,8 +119,14 @@ function Tanque(posx,posy,ancho,alto,tipo) {
                      levelActual[this.posx][this.posy+1] = this;
                      this.posy = this.posy+1;
                      this.direccion = "RT";
-                     //hacer el if de tpo de tanque...
-                     this.image.src = "imagenes/tankR.fw.png";
+                     if (this.nombre === "edelweiss")
+                         this.image.src = "imagenes/tankR.fw.png";
+                     else if (this.nombre === "equus")
+                         this.image.src = "imagenes/inutilR.fw.png";
+                     else if (this.nombre === "lupus")
+                         this.image.src = "imagenes/tigerR.fw.png";
+                     else if (this.nombre === "geirorul")
+                         this.image.src = "imagenes/fastR.fw.png";
                      break;}
                  else
                      break;
@@ -110,22 +135,54 @@ function Tanque(posx,posy,ancho,alto,tipo) {
     };
 
     this.fire = function(){
-        //falta comprobacion de tipo de tanque...
         if (this.direccion === "LF"){
-            canon = new Bill(this.posx,this.posy-1,"UP",0);
-            levelActual[canon.posx][canon.posy] = canon;
+            if (this.nombre === "edelweiss"){
+                canon = new Bill(this.posx,this.posy-1,"UP",0);
+                levelActual[canon.posx][canon.posy] = canon;
+                canon.moverB();}
+            else if (this.nombre === "geirorul"){
+                canon = new Bill(this.posx,this.posy-1,"UP",2);
+                levelActual[canon.posx][canon.posy] = canon;}
+            else{
+                canon = new Bill(this.posx,this.posy-1,"UP",1);
+                levelActual[canon.posx][canon.posy] = canon;
+            }
         }
         else if (this.direccion === "RT"){
-            canon = new Bill(this.posx,this.posy+1,"DW",0);
-            levelActual[canon.posx][canon.posy] = canon;
+            if (this.nombre === "edelweiss"){
+                canon = new Bill(this.posx,this.posy+1,"DW",0);
+                levelActual[canon.posx][canon.posy] = canon;
+                canon.moverB();}
+            else if (this.nombre === "geirorul"){
+                canon = new Bill(this.posx,this.posy+1,"DW",2);
+                levelActual[canon.posx][canon.posy] = canon;}
+            else{
+                canon = new Bill(this.posx,this.posy+1,"DW",1);
+                levelActual[canon.posx][canon.posy] = canon;}
         }
         else if (this.direccion === "DW"){
-            canon = new Bill(this.posx+1,this.posy,"RT",0);
-            levelActual[canon.posx][canon.posy] = canon;
+            if (this.nombre === "edelweiss"){
+                canon = new Bill(this.posx+1,this.posy,"RT",0);
+                levelActual[canon.posx][canon.posy] = canon;
+                canon.moverB();}
+            else if (this.nombre === "geirorul"){
+                canon = new Bill(this.posx+1,this.posy,"RT",2);
+                levelActual[canon.posx][canon.posy] = canon;}
+            else{
+                canon = new Bill(this.posx+1,this.posy,"RT",1);
+                levelActual[canon.posx][canon.posy] = canon;}
         }
         else if (this.direccion === "UP"){
-            canon = new Bill(this.posx-1,this.posy,"LF",0);
-            levelActual[canon.posx][canon.posy] = canon;
+            if (this.nombre === "edelweiss"){
+                canon = new Bill(this.posx-1,this.posy,"LF",0);
+                levelActual[canon.posx][canon.posy] = canon;
+                canon.moverB();}
+            else if (this.nombre === "geirorul"){
+                canon = new Bill(this.posx-1,this.posy,"LF",2);
+                levelActual[canon.posx][canon.posy] = canon;}
+            else{
+                canon = new Bill(this.posx-1,this.posy,"LF",1);
+                levelActual[canon.posx][canon.posy] = canon;}
         }
     }
 }

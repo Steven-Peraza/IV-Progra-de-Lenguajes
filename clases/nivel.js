@@ -41,7 +41,7 @@ var level4 = [
 var iCellSize = 24;
 var x;
 var y;
-imgBrick = new Image();
+/*imgBrick = new Image();
 imgBrick.src = "imagenes/brick.png";
 
 imgSteel = new Image();
@@ -68,7 +68,7 @@ imgIgol.src = "imagenes/igol.fw.png";
 
 
 var imgTank;
-imgTank = imgTankUP;
+imgTank = imgTankUP;*/
 
 function pickLevel(opcion){
     switch (opcion){

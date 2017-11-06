@@ -1,6 +1,7 @@
 var myGamePiece;
 var myGameArea;
 var ctx;
+var edel;
 //var bloques = [];
 var block;
 var i;
@@ -57,29 +58,23 @@ function updateGameArea() {
     myGameArea.context.fillStyle = '#111';
     myGameArea.context.fillRect(0, 0, myGameArea.canvas.width, myGameArea.canvas.height);
     myGameArea.context.save();
-    sham.mover(Math.floor((Math.random() * 4) + 1));
     if (myGameArea.key && myGameArea.key === 37) {
-        //imgTank =imgTankL;
         edel.mover(3);
     }
 
     if (myGameArea.key && myGameArea.key === 39) {
-        //imgTank =imgTankR;
         edel.mover(4);
     }
 
     if (myGameArea.key && myGameArea.key === 38) {
-        //imgTank =imgTankUP;
         edel.mover(1);
     }
 
     if (myGameArea.key && myGameArea.key === 40) {
-        //imgTank =imgTankDW;
         edel.mover(2);
     }
 
     if (myGameArea.key && myGameArea.key === 70) {
-        //imgTank =imgTankDW;
         edel.fire();
     }
 
