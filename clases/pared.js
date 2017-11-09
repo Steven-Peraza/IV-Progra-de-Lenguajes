@@ -18,6 +18,12 @@ function Muro(posx,posy,ancho,alto,tipo) {
         this.image.src = "imagenes/steel.png";
         this.nombre = "ragnite";
     }
+    else if (tipo === 3) {// bloque tipo 2: metal
+        this.tipo = 3;
+        this.image = new Image();
+        this.image.src = "imagenes/water.png";
+        this.nombre = "border";
+    }
 
     this.break = function(){
         if (this.nombre === "ladrillo")

@@ -14,9 +14,10 @@ var timer2;
 function startGame() {
     myGameArea.start();
     pickLevel(1);
-    aguilasRan();
-    aguilasRan();
-    edel = new Tanque(25,12,24,24,0);
+    trumpApproves();
+    for (var o = 0; o < 5; o++)
+        aguilasRan();
+    edel = new Tanque(24,12,24,24,0);
     sham = new Tanque(12,12,24,24,0);
     levelActual[edel.posx][edel.posy] = edel;
     for (var i = 0; i<eneIni; i++)

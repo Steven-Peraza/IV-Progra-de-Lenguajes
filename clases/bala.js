@@ -47,19 +47,18 @@ function Bill(posx,posy,direccion,tipo) {
     this.moverB = function(){
         //while (this.posx !== 0 || this.posy !== 25 || this.posy !== 0 || this.posx !== 25){
             if (this.direccion === "LF") {//izquierds
-                if (levelActual[this.posx - 1][this.posy] === null && this.posx !== 0) {
-                    {
+                if (levelActual[this.posx - 1][this.posy] === null && this.posx !== 1) {
+                    //{
                         levelActual[this.posx][this.posy] = null;
                         levelActual[this.posx - 1][this.posy] = this;
                         this.posx = this.posx - 1;
                         /*refresh();
                         this.moverB();*/
-                    }
                 } else {
                     //break;
                 }
             } else if (this.direccion === "RT") {//derecha
-                if (levelActual[this.posx + 1][this.posy] === null && this.posx !== 25) {
+                if (levelActual[this.posx + 1][this.posy] === null && this.posx !== 24) {
                     {
                         levelActual[this.posx][this.posy] = null;
                         levelActual[this.posx + 1][this.posy] = this;
@@ -69,7 +68,7 @@ function Bill(posx,posy,direccion,tipo) {
                     //break;
                 }
             } else if (this.direccion === "UP") {//arriba
-                if (levelActual[this.posx][this.posy - 1] === null && this.posy !== 0) {
+                if (levelActual[this.posx][this.posy - 1] === null && this.posy !== 1) {
                     {
                         levelActual[this.posx][this.posy] = null;
                         levelActual[this.posx][this.posy - 1] = this;
@@ -79,7 +78,7 @@ function Bill(posx,posy,direccion,tipo) {
                    // break;
                 }
             } else if (this.direccion === "DW") {//derecha
-                if (levelActual[this.posx][this.posy + 1] === null && this.posy !== 25) {
+                if (levelActual[this.posx][this.posy + 1] === null && this.posy !== 24) {
                     {
                         levelActual[this.posx][this.posy] = null;
                         levelActual[this.posx][this.posy + 1] = this;

@@ -41,34 +41,7 @@ var level4 = [
 var iCellSize = 24;
 var x;
 var y;
-/*imgBrick = new Image();
-imgBrick.src = "imagenes/brick.png";
 
-imgSteel = new Image();
-imgSteel.src = "imagenes/steel.png";
-
-imgTankUP = new Image();
-imgTankUP.src = "imagenes/tankU.fw.png";
-
-imgTankDW = new Image();
-imgTankDW.src = "imagenes/tankD.fw.png";
-
-imgTankL = new Image();
-imgTankL.src = "imagenes/tankL.fw.png";
-
-imgTankR = new Image();
-imgTankR.src = "imagenes/tankR.fw.png";
-
-imgWater = new Image();
-imgWater.src = "imagenes/water.png";
-
-imgIgol = new Image();
-imgIgol.src = "imagenes/igol.fw.png";
-
-
-
-var imgTank;
-imgTank = imgTankUP;*/
 
 function pickLevel(opcion){
     switch (opcion){
@@ -101,6 +74,12 @@ function refresh() {
                 else if (levelActual[y][x].getNombre() === "aguila") {
                     myGameArea.context.drawImage(levelActual[y][x].image, 0, 0, iCellSize, iCellSize, x * iCellSize, y * iCellSize, iCellSize, iCellSize);
                 }
+                else if (levelActual[y][x].getNombre() === "gavilan") {
+                    myGameArea.context.drawImage(levelActual[y][x].image, 0, 0, iCellSize, iCellSize, x * iCellSize, y * iCellSize, iCellSize, iCellSize);
+                }
+                else if (levelActual[y][x].getNombre() === "border") {
+                    myGameArea.context.drawImage(levelActual[y][x].image, 0, 0, iCellSize, iCellSize, x * iCellSize, y * iCellSize, iCellSize, iCellSize);
+                }
                 else if (levelActual[y][x].getNombre() === "edelweiss") {
                     myGameArea.context.drawImage(levelActual[y][x].image, 0, 0, iCellSize, iCellSize, x * iCellSize, y * iCellSize, iCellSize, iCellSize);
                 }
@@ -123,16 +102,27 @@ function refresh() {
 
 
 function aguilasRan(){
-    aleaX = Math.floor((Math.random() * 25));
-    aleaY = Math.floor((Math.random() * 25));
-
-    aguila= new Igol(aleaX,aleaY);
+    aleaX = Math.floor((Math.random() * 24)+1);
+    aleaY = Math.floor((Math.random() * 24)+1);
+    aleaType = Math.floor((Math.random() * 2) + 1);
+    aguila= new Igol(aleaX,aleaY,aleaType);
     if (levelActual[aleaX][aleaY] === null )//comparar con los otros elementos
         levelActual[aleaX][aleaY] = aguila;
     else
         aguilasRan();
 }
 
+function trumpApproves() {
+    for (var v = 0;v < 26;v++){
+        for (var c = 0; c<26;c++){
+            if (v === 0 || v === 25 || c === 0 || c === 25){
+                block = new Muro(v,c,24,24,3);
+                levelActual[v][c] = block;
+            }
+
+        }
+    }
+}
 function creaEnemigos() {
     aleaX = Math.floor((Math.random() * 24)+1);
     aleaY = Math.floor((Math.random() * 24)+1);
