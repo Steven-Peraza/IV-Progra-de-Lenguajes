@@ -37,7 +37,7 @@ function Bill(posx,posy,direccion,tipo) {
 
 
     this.headshot = function () {
-        if ((levelActual[this.posx][this.posy].getNombre() === "inutil" || levelActual[this.posx][this.posy].getNombre() === "rapido" || levelActual[this.posx][this.posy].getNombre() === "tanque"))
+        if ((levelActual[this.posx][this.posy].getNombre() === "inutil" || levelActual[this.posx][this.posy].getNombre() === "rapido" || levelActual[this.posx][this.posy].getNombre() === "tanque" ||levelActual[this.posx][this.posy].getNombre() === "principal"))
             levelActual[this.posx][this.posy].hit();
 
         else if ((levelActual[this.posx][this.posy].getNombre() === "ladrillo"))
@@ -64,7 +64,7 @@ function Bill(posx,posy,direccion,tipo) {
                     this.posx = this.posx + 1;
                     levelActual[this.posx][this.posy] = null;
                     this.die = true;
-                    clearInterval(timer2);
+                    //clearInterval(timer2);
                 }
             } else if (this.direccion === "RT") {//derecha
                 if (levelActual[this.posx + 1][this.posy] === null && this.posx !== 24 && this.die === false) {
@@ -79,7 +79,7 @@ function Bill(posx,posy,direccion,tipo) {
                     this.posx = this.posx - 1;
                     levelActual[this.posx][this.posy] = null;
                     this.die = true;
-                    clearInterval(timer2);
+                    //clearInterval(timer2);
                 }
             } else if (this.direccion === "UP") {//arriba
                 if (levelActual[this.posx][this.posy - 1] === null && this.posy !== 1 && this.die === false) {
@@ -95,7 +95,7 @@ function Bill(posx,posy,direccion,tipo) {
                     this.posy = this.posy + 1;
                     levelActual[this.posx][this.posy] = null;
                     this.die = true;
-                    clearInterval(timer2);
+                    //clearInterval(timer2);
                 }
             } else if (this.direccion === "DW") {//derecha
                 if (levelActual[this.posx][this.posy + 1] === null && this.posy !== 24 && this.die === false) {
@@ -110,7 +110,7 @@ function Bill(posx,posy,direccion,tipo) {
                     this.posy = this.posy - 1;
                     levelActual[this.posx][this.posy] = null;
                     this.die = true;
-                    clearInterval(timer2);
+                    //clearInterval(timer2);
 
                 }
             }

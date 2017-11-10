@@ -6,6 +6,7 @@ function Tanque(posx,posy,ancho,alto,tipo) {
     this.posy = posy;
     this.ancho = ancho;
     this.alto = alto;
+    this.die = false;
     if (tipo === 0) {// tanque tipo 1: el principal
         this.tipo = 0;
         this.image = new Image();
@@ -51,8 +52,10 @@ function Tanque(posx,posy,ancho,alto,tipo) {
     this.hit = function () {
         if (this.life > 0)
             this.life -= 1;
-        else
+        else {
             levelActual[this.posx][this.posy] = null;
+            this.die = true;
+        }
     };
 
     this.getNombre = function () {
@@ -77,8 +80,18 @@ function Tanque(posx,posy,ancho,alto,tipo) {
                      else if (this.nombre === "rapido")
                          this.image.src = "imagenes/fastU.fw.png";
                      break;}
-                 else
+                 else {
+                     if (this.nombre === "principal")
+                         this.image.src = "imagenes/tankU.fw.png";
+                     else if (this.nombre === "inutil")
+                         this.image.src = "imagenes/inutilU.fw.png";
+                     else if (this.nombre === "tanque")
+                         this.image.src = "imagenes/tigerU.fw.png";
+                     else if (this.nombre === "rapido")
+                         this.image.src = "imagenes/fastU.fw.png";
+                     this.direccion = "UP";
                      break;
+                 }
              case 2: //derecha
                  if (levelActual[this.posx+1][this.posy] === null && this.posx !== 25){
                      levelActual[this.posx][this.posy] = null;
@@ -94,8 +107,18 @@ function Tanque(posx,posy,ancho,alto,tipo) {
                      else if (this.nombre === "rapido")
                          this.image.src = "imagenes/fastD.fw.png";
                      break;}
-                 else
+                 else {
+                     if (this.nombre === "principal")
+                         this.image.src = "imagenes/tankD.fw.png";
+                     else if (this.nombre === "inutl")
+                         this.image.src = "imagenes/inutilD.fw.png";
+                     else if (this.nombre === "tanque")
+                         this.image.src = "imagenes/tigerD.fw.png";
+                     else if (this.nombre === "rapido")
+                         this.image.src = "imagenes/fastD.fw.png";
+                     this.direccion = "DW";
                      break;
+                 }
              case 3: //arriba
                  if (levelActual[this.posx][this.posy-1] === null && this.posy !== 0){
                      levelActual[this.posx][this.posy] = null;
@@ -111,8 +134,18 @@ function Tanque(posx,posy,ancho,alto,tipo) {
                      else if (this.nombre === "rapido")
                          this.image.src = "imagenes/fastL.fw.png";
                      break;}
-                 else
+                 else {
+                     if (this.nombre === "principal")
+                         this.image.src = "imagenes/tankL.fw.png";
+                     else if (this.nombre === "inutil")
+                         this.image.src = "imagenes/inutilL.fw.png";
+                     else if (this.nombre === "tanque")
+                         this.image.src = "imagenes/tigerL.fw.png";
+                     else if (this.nombre === "rapido")
+                         this.image.src = "imagenes/fastL.fw.png";
+                     this.direccion = "LF";
                      break;
+                 }
              case 4: //derecha
                  if (levelActual[this.posx][this.posy+1] === null && this.posy !== 25){
                      levelActual[this.posx][this.posy] = null;
@@ -128,8 +161,18 @@ function Tanque(posx,posy,ancho,alto,tipo) {
                      else if (this.nombre === "rapido")
                          this.image.src = "imagenes/fastR.fw.png";
                      break;}
-                 else
+                 else {
+                     if (this.nombre === "principal")
+                         this.image.src = "imagenes/tankR.fw.png";
+                     else if (this.nombre === "inutil")
+                         this.image.src = "imagenes/inutilR.fw.png";
+                     else if (this.nombre === "tanque")
+                         this.image.src = "imagenes/tigerR.fw.png";
+                     else if (this.nombre === "rapido")
+                         this.image.src = "imagenes/fastR.fw.png";
+                     this.direccion = "RT";
                      break;
+                 }
          }
 
     };
@@ -152,7 +195,7 @@ function Tanque(posx,posy,ancho,alto,tipo) {
             canon = new Bill(this.posx,this.posy-1,"UP",2);
             canon.headshot();
             canon.die = true;
-            clearInterval(timer2);
+
         }
         else if (this.direccion === "RT" && levelActual[this.posx][this.posy+1] === null){
             if (this.nombre === "principal"){
@@ -170,7 +213,7 @@ function Tanque(posx,posy,ancho,alto,tipo) {
             canon = new Bill(this.posx,this.posy+1,"DW",2);
             canon.headshot();
             canon.die = true;
-            clearInterval(timer2);
+
         }
         else if (this.direccion === "DW" && levelActual[this.posx+1][this.posy] === null){
             if (this.nombre === "principal"){
@@ -188,7 +231,7 @@ function Tanque(posx,posy,ancho,alto,tipo) {
             canon = new Bill(this.posx+1,this.posy,"RT",2);
             canon.headshot();
             canon.die = true;
-            clearInterval(timer2);
+
         }
         else if (this.direccion === "UP" && levelActual[this.posx-1][this.posy] === null){
             if (this.nombre === "principal"){
@@ -206,7 +249,7 @@ function Tanque(posx,posy,ancho,alto,tipo) {
             canon = new Bill(this.posx-1,this.posy,"LF",2);
             canon.headshot();
             canon.die = true;
-            clearInterval(timer2);
+
         }
         aliveBills.push(canon);
     }

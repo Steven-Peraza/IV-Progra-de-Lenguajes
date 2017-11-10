@@ -11,6 +11,7 @@ var timer;
 var timer2;
 
 var aliveBills = [];
+var enemysList = [];
 
 
 function startGame() {
@@ -20,7 +21,6 @@ function startGame() {
     for (var o = 0; o < 5; o++)
         aguilasRan();
     edel = new Tanque(24,12,24,24,0);
-    sham = new Tanque(12,12,24,24,0);
     levelActual[edel.posx][edel.posy] = edel;
     for (var i = 0; i<eneIni; i++)
         creaEnemigos();
@@ -35,9 +35,10 @@ myGameArea = {
         this.canvas.height = 624;
         this.context = this.canvas.getContext("2d");
         document.body.insertBefore(this.canvas, document.body.childNodes[0]);
-        this.interval = setInterval(updateGameArea, 80);
+        this.interval = setInterval(updateGameArea, 60);
         ///
         timer = setInterval(creaEnemigos, 10000);
+        timer2 = setInterval(moveAllEnemys,1000);
         ///
         //timer2 = setInterval(sham.mover(Math.floor((Math.random() * 4) + 1)),1200);
         window.addEventListener('keydown', function (e) {
@@ -91,5 +92,36 @@ function moveAllBills(){
         if (element.die !== true)
             element.moverB();
     })
+}
+function moveAllEnemys() {
+    enemysList.forEach(function (enemy) {
+        if (enemy.die !== true) {
+            enemy.mover(Math.floor((Math.random() * 4)) + 1);
+            //enemy.fire();
+            if(edel.posx === enemy.posx){
+                if(edel.posy > enemy.posy){
+                    enemy.mover(4);
+                    enemy.fire();
+                }
+                else {
+                    enemy.mover(3);
+                    enemy.fire();
+                }
+
+            }
+            if(edel.posy === enemy.posy){
+                if(edel.posx > enemy.posx){
+                    enemy.mover(2);
+                    enemy.fire();
+                }
+                else {
+                    enemy.mover(1);
+                    enemy.fire();
+                }
+            }
+        }
+
+    })
+
 }
 
