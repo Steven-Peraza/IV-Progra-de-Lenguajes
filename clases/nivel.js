@@ -130,6 +130,7 @@ function creaEnemigos() {
     enemy = new Tanque(aleaX,aleaY,24,24,aleaType);
     if (levelActual[aleaX][aleaY] === null){
         levelActual[enemy.posx][enemy.posy] = enemy;
+        enemysList.push(enemy);
     }
     else
         creaEnemigos();
