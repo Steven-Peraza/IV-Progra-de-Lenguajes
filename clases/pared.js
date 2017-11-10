@@ -26,8 +26,7 @@ function Muro(posx,posy,ancho,alto,tipo) {
     }
 
     this.break = function(){
-        if (this.nombre === "ladrillo")
-            levelActual[this.posx][this.posy] = null;
+        levelActual[this.posx][this.posy] = null;
     };
 
     this.getNombre = function () {

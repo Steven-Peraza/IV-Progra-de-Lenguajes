@@ -7,6 +7,7 @@ function Bill(posx,posy,direccion,tipo) {
     this.direccion = direccion;
     this.nombre = "bill";
     this.image = new Image();
+    this.die = false;
 
     if (tipo === 0) {// bala tipo 0: el principal
         this.tipo = 0;
@@ -36,8 +37,14 @@ function Bill(posx,posy,direccion,tipo) {
 
 
     this.headshot = function () {
-        //ver la colision y comparar el tipo de objeto con el que se pego...
+        if ((levelActual[this.posx][this.posy].getNombre() === "inutil" || levelActual[this.posx][this.posy].getNombre() === "rapido" || levelActual[this.posx][this.posy].getNombre() === "tanque"))
+            levelActual[this.posx][this.posy].hit();
 
+        else if ((levelActual[this.posx][this.posy].getNombre() === "ladrillo"))
+            levelActual[this.posx][this.posy].break();
+
+        else if (levelActual[this.posx][this.posy].getNombre() === "aguila" || levelActual[this.posx][this.posy].getNombre() === "gavilan")
+            levelActual[this.posx][this.posy].conectado();
     };
 
     this.getNombre = function () {
@@ -45,49 +52,68 @@ function Bill(posx,posy,direccion,tipo) {
     };
 
     this.moverB = function(){
-        //while (this.posx !== 0 || this.posy !== 25 || this.posy !== 0 || this.posx !== 25){
             if (this.direccion === "LF") {//izquierds
-                if (levelActual[this.posx - 1][this.posy] === null && this.posx !== 1) {
+                if (levelActual[this.posx - 1][this.posy] === null && this.posx !== 1 && this.die === false) {
                     //{
                         levelActual[this.posx][this.posy] = null;
                         levelActual[this.posx - 1][this.posy] = this;
                         this.posx = this.posx - 1;
-                        /*refresh();
-                        this.moverB();*/
                 } else {
-                    //break;
+                    this.posx = this.posx - 1;
+                    this.headshot();
+                    this.posx = this.posx + 1;
+                    levelActual[this.posx][this.posy] = null;
+                    this.die = true;
+                    clearInterval(timer2);
                 }
             } else if (this.direccion === "RT") {//derecha
-                if (levelActual[this.posx + 1][this.posy] === null && this.posx !== 24) {
+                if (levelActual[this.posx + 1][this.posy] === null && this.posx !== 24 && this.die === false) {
                     {
                         levelActual[this.posx][this.posy] = null;
                         levelActual[this.posx + 1][this.posy] = this;
                         this.posx = this.posx + 1;
                     }
                 } else {
-                    //break;
+                    this.posx = this.posx + 1;
+                    this.headshot();
+                    this.posx = this.posx - 1;
+                    levelActual[this.posx][this.posy] = null;
+                    this.die = true;
+                    clearInterval(timer2);
                 }
             } else if (this.direccion === "UP") {//arriba
-                if (levelActual[this.posx][this.posy - 1] === null && this.posy !== 1) {
+                if (levelActual[this.posx][this.posy - 1] === null && this.posy !== 1 && this.die === false) {
                     {
                         levelActual[this.posx][this.posy] = null;
                         levelActual[this.posx][this.posy - 1] = this;
                         this.posy = this.posy - 1;
                     }
-                } else {
-                   // break;
+                }
+                else {
+                    this.posy = this.posy - 1;
+                    this.headshot();
+                    this.posy = this.posy + 1;
+                    levelActual[this.posx][this.posy] = null;
+                    this.die = true;
+                    clearInterval(timer2);
                 }
             } else if (this.direccion === "DW") {//derecha
-                if (levelActual[this.posx][this.posy + 1] === null && this.posy !== 24) {
+                if (levelActual[this.posx][this.posy + 1] === null && this.posy !== 24 && this.die === false) {
                     {
                         levelActual[this.posx][this.posy] = null;
                         levelActual[this.posx][this.posy + 1] = this;
                         this.posy = this.posy + 1;
                     }
                 } else {
-                    //break;
+                    this.posy = this.posy + 1;
+                    this.headshot();
+                    this.posy = this.posy - 1;
+                    levelActual[this.posx][this.posy] = null;
+                    this.die = true;
+                    clearInterval(timer2);
+
                 }
             }
 
-    }//};
+    }
 }

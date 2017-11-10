@@ -22,8 +22,8 @@ function Igol(posx,posy,tipo) {
 
     this.conectado = function () {
         this.estado = "wasted";
+        this.image = new Image();
         this.image.src = "imagenes/igolDW.fw.png";
-        levelActual[this.posx][this.posy] = null;
     };
 
     this.getNombre = function () {

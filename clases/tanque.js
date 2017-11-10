@@ -135,7 +135,12 @@ function Tanque(posx,posy,ancho,alto,tipo) {
     };
 
     this.fire = function(){
-        if (this.direccion === "LF"){
+    /*else if (levelActual[this.posx][this.posy] !== null && this.posy !== 1 && this.die === false){
+            this.headshot();
+            this.die = true;
+            clearInterval(timer2);
+        }*/
+        if (this.direccion === "LF" && levelActual[this.posx][this.posy-1] === null){
             if (this.nombre === "principal"){
                 canon = new Bill(this.posx,this.posy-1,"UP",0);
                 levelActual[canon.posx][canon.posy] = canon;}
@@ -148,7 +153,7 @@ function Tanque(posx,posy,ancho,alto,tipo) {
                 levelActual[canon.posx][canon.posy] = canon;
             }
         }
-        else if (this.direccion === "RT"){
+        else if (this.direccion === "RT" && levelActual[this.posx][this.posy+1] === null){
             if (this.nombre === "principal"){
                 canon = new Bill(this.posx,this.posy+1,"DW",0);
                 levelActual[canon.posx][canon.posy] = canon;}
@@ -160,7 +165,7 @@ function Tanque(posx,posy,ancho,alto,tipo) {
                 canon = new Bill(this.posx,this.posy+1,"DW",1);
                 levelActual[canon.posx][canon.posy] = canon;}
         }
-        else if (this.direccion === "DW"){
+        else if (this.direccion === "DW" && levelActual[this.posx+1][this.posy] === null){
             if (this.nombre === "principal"){
                 canon = new Bill(this.posx+1,this.posy,"RT",0);
                 levelActual[canon.posx][canon.posy] = canon;}
@@ -172,7 +177,7 @@ function Tanque(posx,posy,ancho,alto,tipo) {
                 canon = new Bill(this.posx+1,this.posy,"RT",1);
                 levelActual[canon.posx][canon.posy] = canon;}
         }
-        else if (this.direccion === "UP"){
+        else if (this.direccion === "UP" && levelActual[this.posx-1][this.posy] === null){
             if (this.nombre === "principal"){
                 canon = new Bill(this.posx-1,this.posy,"LF",0);
                 levelActual[canon.posx][canon.posy] = canon;}
@@ -184,6 +189,7 @@ function Tanque(posx,posy,ancho,alto,tipo) {
                 canon = new Bill(this.posx-1,this.posy,"LF",1);
                 levelActual[canon.posx][canon.posy] = canon;}
         }
+        aliveBills.push(canon);
     }
 }
 

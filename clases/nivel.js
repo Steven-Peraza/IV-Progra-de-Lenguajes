@@ -80,16 +80,16 @@ function refresh() {
                 else if (levelActual[y][x].getNombre() === "border") {
                     myGameArea.context.drawImage(levelActual[y][x].image, 0, 0, iCellSize, iCellSize, x * iCellSize, y * iCellSize, iCellSize, iCellSize);
                 }
-                else if (levelActual[y][x].getNombre() === "edelweiss") {
+                else if (levelActual[y][x].getNombre() === "principal") {
                     myGameArea.context.drawImage(levelActual[y][x].image, 0, 0, iCellSize, iCellSize, x * iCellSize, y * iCellSize, iCellSize, iCellSize);
                 }
-                else if (levelActual[y][x].getNombre() === "equus") {
+                else if (levelActual[y][x].getNombre() === "inutil") {
                     myGameArea.context.drawImage(levelActual[y][x].image, 0, 0, iCellSize, iCellSize, x * iCellSize, y * iCellSize, iCellSize, iCellSize);
                 }
-                else if (levelActual[y][x].getNombre() === "lupus") {
+                else if (levelActual[y][x].getNombre() === "tanque") {
                     myGameArea.context.drawImage(levelActual[y][x].image, 0, 0, iCellSize, iCellSize, x * iCellSize, y * iCellSize, iCellSize, iCellSize);
                 }
-                else if (levelActual[y][x].getNombre() === "geirorul") {
+                else if (levelActual[y][x].getNombre() === "rapido") {
                     myGameArea.context.drawImage(levelActual[y][x].image, 0, 0, iCellSize, iCellSize, x * iCellSize, y * iCellSize, iCellSize, iCellSize);
                 }
                 else if (levelActual[y][x].getNombre() === "bill") {

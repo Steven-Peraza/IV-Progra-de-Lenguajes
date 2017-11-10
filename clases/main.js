@@ -10,6 +10,8 @@ var eneIni = 5;
 var timer;
 var timer2;
 
+var aliveBills = [];
+
 
 function startGame() {
     myGameArea.start();
@@ -76,11 +78,18 @@ function updateGameArea() {
     }
 
     if (myGameArea.key && myGameArea.key === 70) {
-        edel.fire();
+        canon = edel.fire();
     }
 
     refresh();
-
+    moveAllBills();
     myGameArea.context.restore();
+}
+
+function moveAllBills(){
+    aliveBills.forEach(function (element) {
+        if (element.die !== true)
+            element.moverB();
+    })
 }
 
