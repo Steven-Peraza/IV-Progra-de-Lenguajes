@@ -13,10 +13,26 @@ var timer2;
 var aliveBills = [];
 var enemysList = [];
 
+var igolsLeft;
+var gamesLeft = 2;
+
+var audio = new Audio('sonidos/battle_city.mp3');
+var audiofire = new Audio("sonidos/Battle_City_SFX_6_.mp3");
+var audiosteel = new Audio("sonidos/Battle_City_SFX_3_.mp3");
+var audiobrick = new Audio("sonidos/Battle_City_SFX_5_.mp3");
+var audiohit = new Audio("sonidos/Battle_City_SFX_7_.mp3");
+var audioBay = new Audio("sonidos/Battle_City_SFX_11_.mp3");
+var audioSlave = new Audio("sonidos/Battle_City_SFX_14_.mp3");
+
+
+var nivelAct = 0;
 
 function startGame() {
+    nivelAct ++;
+    igolsLeft = 5;
     myGameArea.start();
-    pickLevel(1);
+    audio.play();
+    pickLevel(nivelAct);
     trumpApproves();
     for (var o = 0; o < 5; o++)
         aguilasRan();
@@ -62,6 +78,10 @@ function updateGameArea() {
     myGameArea.context.fillStyle = '#111';
     myGameArea.context.fillRect(0, 0, myGameArea.canvas.width, myGameArea.canvas.height);
     myGameArea.context.save();
+
+    if (igolsLeft === 0)
+        gameOver();
+
     if (myGameArea.key && myGameArea.key === 37) {
         edel.mover(3);
     }
@@ -79,6 +99,9 @@ function updateGameArea() {
     }
 
     if (myGameArea.key && myGameArea.key === 70) {
+        audiofire.pause();
+        audiofire.currentTime = 0;
+        audiofire.play();
         canon = edel.fire();
     }
 
@@ -101,10 +124,16 @@ function moveAllEnemys() {
             if(edel.posx === enemy.posx){
                 if(edel.posy > enemy.posy){
                     enemy.mover(4);
+                    audiofire.pause();
+                    audiofire.currentTime = 0;
+                    audiofire.play();
                     enemy.fire();
                 }
                 else {
                     enemy.mover(3);
+                    audiofire.pause();
+                    audiofire.currentTime = 0;
+                    audiofire.play();
                     enemy.fire();
                 }
 
@@ -112,10 +141,16 @@ function moveAllEnemys() {
             if(edel.posy === enemy.posy){
                 if(edel.posx > enemy.posx){
                     enemy.mover(2);
+                    audiofire.pause();
+                    audiofire.currentTime = 0;
+                    audiofire.play();
                     enemy.fire();
                 }
                 else {
                     enemy.mover(1);
+                    audiofire.pause();
+                    audiofire.currentTime = 0;
+                    audiofire.play();
                     enemy.fire();
                 }
             }
@@ -125,3 +160,21 @@ function moveAllEnemys() {
 
 }
 
+function gameOver() {
+    clearInterval(timer);
+    clearInterval(timer2);
+        //poner musiquita
+        //nextlevel
+    if(gamesLeft > 0){
+        aliveBills = [];
+        enemysList = [];
+        startGame();
+        gamesLeft--;
+        myGameArea.stop();
+    }
+    else{
+        myGameArea.context.fillStyle = "blue";
+        myGameArea.context.font = "bold 80px Arial";
+        myGameArea.context.fillText("You Win!",112,212);
+    }
+}

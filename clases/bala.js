@@ -37,14 +37,41 @@ function Bill(posx,posy,direccion,tipo) {
 
 
     this.headshot = function () {
-        if ((levelActual[this.posx][this.posy].getNombre() === "inutil" || levelActual[this.posx][this.posy].getNombre() === "rapido" || levelActual[this.posx][this.posy].getNombre() === "tanque" ||levelActual[this.posx][this.posy].getNombre() === "principal"))
-            levelActual[this.posx][this.posy].hit();
+        if ((levelActual[this.posx][this.posy].getNombre() === "inutil" || levelActual[this.posx][this.posy].getNombre() === "rapido" || levelActual[this.posx][this.posy].getNombre() === "tanque" ||levelActual[this.posx][this.posy].getNombre() === "principal")){
+            if (levelActual[this.posx][this.posy].life > 0){
+                levelActual[this.posx][this.posy].hit();
+                audiohit.pause();
+                audiohit.currentTime = 0;
+                audiohit.play();
+            }
+            else{
+                levelActual[this.posx][this.posy].hit();
+                audioBay.pause();
+                audioBay.currentTime = 0;
+                audioBay.play();
+            }
+            }
 
-        else if ((levelActual[this.posx][this.posy].getNombre() === "ladrillo"))
+        else if ((levelActual[this.posx][this.posy].getNombre() === "ladrillo")){
             levelActual[this.posx][this.posy].break();
+            audiobrick.pause();
+            audiobrick.currentTime = 0;
+            audiobrick.play();}
 
-        else if (levelActual[this.posx][this.posy].getNombre() === "aguila" || levelActual[this.posx][this.posy].getNombre() === "gavilan")
-            levelActual[this.posx][this.posy].conectado();
+        else if ((levelActual[this.posx][this.posy].getNombre() === "aguila" || levelActual[this.posx][this.posy].getNombre() === "gavilan") && this.tipo === 0){
+            if (levelActual[this.posx][this.posy].estado !== "wasted"){
+                levelActual[this.posx][this.posy].conectado();
+                igolsLeft -=1;
+                audioSlave.pause();
+                audioSlave.currentTime = 0;
+                audioSlave.play();}
+            else
+                levelActual[this.posx][this.posy].conectado();
+        }
+        else if ((levelActual[this.posx][this.posy].getNombre() === "ragnite") || (levelActual[this.posx][this.posy].getNombre() === "border")){
+            audiosteel.pause();
+            audiosteel.currentTime = 0;
+            audiosteel.play();}
     };
 
     this.getNombre = function () {
