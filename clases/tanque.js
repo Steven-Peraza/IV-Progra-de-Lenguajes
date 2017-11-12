@@ -1,18 +1,13 @@
 
 
 function Tanque(posx,posy,ancho,alto,tipo) {
-    this.gamearea = myGameArea;
     this.posx = posx;
     this.posy = posy;
-    this.ancho = ancho;
-    this.alto = alto;
     this.die = false;
     if (tipo === 0) {// tanque tipo 1: el principal
         this.tipo = 0;
         this.image = new Image();
         this.image.src = "imagenes/tankU.fw.png";
-        this.speedX = 0;
-        this.speedY = 0;
         this.life = 3;
         this.nombre = "principal";
         this.direccion = "UP";
@@ -182,7 +177,7 @@ function Tanque(posx,posy,ancho,alto,tipo) {
             if (this.nombre === "principal"){
                 canon = new Bill(this.posx,this.posy-1,"UP",0);
                 levelActual[canon.posx][canon.posy] = canon;}
-                //canon.moverB();}
+
             else if (this.nombre === "rapido"){
                 canon = new Bill(this.posx,this.posy-1,"UP",2);
                 levelActual[canon.posx][canon.posy] = canon;}
@@ -192,7 +187,7 @@ function Tanque(posx,posy,ancho,alto,tipo) {
             }
         }
         else if (this.direccion === "LF" && levelActual[this.posx][this.posy-1] !== null/* && this.posy-1 !== 0*/){
-            canon = new Bill(this.posx,this.posy-1,"UP",2);
+            canon = new Bill(this.posx,this.posy-1,"UP",0);
             canon.headshot();
             canon.die = true;
 
@@ -210,7 +205,7 @@ function Tanque(posx,posy,ancho,alto,tipo) {
                 levelActual[canon.posx][canon.posy] = canon;}
         }
         else if (this.direccion === "RT" && levelActual[this.posx][this.posy+1] !== null /*&& this.posy+1 !== 25*/){
-            canon = new Bill(this.posx,this.posy+1,"DW",2);
+            canon = new Bill(this.posx,this.posy+1,"DW",0);
             canon.headshot();
             canon.die = true;
 
@@ -228,7 +223,7 @@ function Tanque(posx,posy,ancho,alto,tipo) {
                 levelActual[canon.posx][canon.posy] = canon;}
         }
         else if (this.direccion === "DW" && levelActual[this.posx+1][this.posy] !== null /*&& this.posx+1 !== 25*/){
-            canon = new Bill(this.posx+1,this.posy,"RT",2);
+            canon = new Bill(this.posx+1,this.posy,"RT",0);
             canon.headshot();
             canon.die = true;
 
@@ -246,7 +241,7 @@ function Tanque(posx,posy,ancho,alto,tipo) {
                 levelActual[canon.posx][canon.posy] = canon;}
         }
         else if (this.direccion === "UP" && levelActual[this.posx-1][this.posy] !== null/* && this.posx-1 !== 0*/){
-            canon = new Bill(this.posx-1,this.posy,"LF",2);
+            canon = new Bill(this.posx-1,this.posy,"LF",0);
             canon.headshot();
             canon.die = true;
 

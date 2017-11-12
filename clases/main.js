@@ -1,10 +1,7 @@
-var myGamePiece;
+
 var myGameArea;
-var ctx;
 var edel;
-//var bloques = [];
 var block;
-var i;
 var eneIni = 5;
 
 var timer;
@@ -51,7 +48,7 @@ myGameArea = {
         this.canvas.height = 624;
         this.context = this.canvas.getContext("2d");
         document.body.insertBefore(this.canvas, document.body.childNodes[0]);
-        this.interval = setInterval(updateGameArea, 60);
+        this.interval = setInterval(updateGameArea, 100);
         ///
         timer = setInterval(creaEnemigos, 10000);
         timer2 = setInterval(moveAllEnemys,1000);
@@ -165,16 +162,20 @@ function gameOver() {
     clearInterval(timer2);
         //poner musiquita
         //nextlevel
-    if(gamesLeft > 0){
+    if (gamesLeft <= 0) {
+        myGameArea.context.fillStyle = "white";
+        myGameArea.context.font = "bold 80px Arial";
+        myGameArea.context.fillText("You Win!",112,212);
+        var winimg = Image();
+        winimg.src = 'imagenes/Winbg.png';
+        winimg.onload = function(){
+            myGameArea.context.drawImage(winimg,300,300)
+        };
+    } else {
         aliveBills = [];
         enemysList = [];
         startGame();
         gamesLeft--;
         myGameArea.stop();
-    }
-    else{
-        myGameArea.context.fillStyle = "blue";
-        myGameArea.context.font = "bold 80px Arial";
-        myGameArea.context.fillText("You Win!",112,212);
     }
 }

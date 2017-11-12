@@ -52,7 +52,7 @@ function Bill(posx,posy,direccion,tipo) {
             }
             }
 
-        else if ((levelActual[this.posx][this.posy].getNombre() === "ladrillo")){
+        else if ((levelActual[this.posx][this.posy].getNombre() === "ladrillo")&&(this.tipo === 0)){
             levelActual[this.posx][this.posy].break();
             audiobrick.pause();
             audiobrick.currentTime = 0;

@@ -18,7 +18,7 @@ function Muro(posx,posy,ancho,alto,tipo) {
         this.image.src = "imagenes/steel.png";
         this.nombre = "ragnite";
     }
-    else if (tipo === 3) {// bloque tipo 2: metal
+    else if (tipo === 3) {// bloque tipo 2: agua
         this.tipo = 3;
         this.image = new Image();
         this.image.src = "imagenes/water.png";
