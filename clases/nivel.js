@@ -1,13 +1,11 @@
 
 var levelActual;
-var txAC;
-var tyAC;
-var aleaX;
-var aleaY;
-var aleaType;
-var aguila;
-var enemy;
-var canon;
+var aleaX; // X GENERADO ALEATORIAMENTE
+var aleaY; // Y GENERADO ALEATORIAMENTE
+var aleaType; // TIPO GENERADO ALEATORIAMENTE
+var aguila; // OBJETIVO
+var enemy; // ENEMIGO
+var canon; // BALA
 
 var level1 = [
     [null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null],
@@ -98,7 +96,7 @@ var iCellSize = 24;
 var x;
 var y;
 
-
+// SELECCIONA UNA SEMILLA DE NIVEL ANTES DE COMENZAR
 function pickLevel(opcion){
     switch (opcion){
         case 1:
@@ -114,7 +112,7 @@ function pickLevel(opcion){
 
 }
 
-
+// REDIBUJA LA MATRIZ DE OBJETOS CUANDO HAY CAMBIOS
 function refresh() {
     for (y = 0; y < 26; y++) {
         for (x = 0; x < 26; x++) {
@@ -156,7 +154,7 @@ function refresh() {
     }
 }
 
-
+// GENERA LOS OBJETIVOS EN EL MAPA ALEATORIAMENTE
 function aguilasRan(){
     aleaX = Math.floor((Math.random() * 24)+1);
     aleaY = Math.floor((Math.random() * 24)+1);
@@ -167,7 +165,7 @@ function aguilasRan(){
     else
         aguilasRan();
 }
-
+// CREA EL MURO DE AGUA EN LOS BORDES DE LA MATRIZ
 function trumpApproves() {
     for (var v = 0;v < 26;v++){
         for (var c = 0; c<26;c++){
@@ -179,6 +177,8 @@ function trumpApproves() {
         }
     }
 }
+
+// CREA ENEMIGOS ALEATORIOS EN EL MAPA.
 function creaEnemigos() {
     aleaX = Math.floor((Math.random() * 24)+1);
     aleaY = Math.floor((Math.random() * 24)+1);
@@ -193,6 +193,7 @@ function creaEnemigos() {
 
 }
 
+// CREA BLOQUES ALEATORIAMENTE EN EL MAPA Y DE TIPO ALEATORIO.
 function creaBloques() {
     aleaX = Math.floor((Math.random() * 24)+1);
     aleaY = Math.floor((Math.random() * 24)+1);
@@ -205,3 +206,4 @@ function creaBloques() {
         creaBloques();
 
 }
+
