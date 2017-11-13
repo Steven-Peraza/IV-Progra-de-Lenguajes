@@ -77,7 +77,7 @@ function updateGameArea() {
     myGameArea.context.save();
 
     if (igolsLeft === 0)
-        gameOver();
+        gameOver(1);
 
     if (myGameArea.key && myGameArea.key === 37) {
         edel.mover(3);
@@ -157,25 +157,41 @@ function moveAllEnemys() {
 
 }
 
-function gameOver() {
+function gameOver(estado) {
     clearInterval(timer);
     clearInterval(timer2);
+    myGameArea.stop();
         //poner musiquita
         //nextlevel
-    if (gamesLeft <= 0) {
+    if(estado === 1) {
+        if (gamesLeft <= 0) {
+            myGameArea.context.fillStyle = "white";
+            myGameArea.context.font = "bold 80px Arial";
+            myGameArea.context.fillText("You Win!", 112, 212);
+            var winimg = Image();
+            winimg.src = 'imagenes/Winbg.png';
+            winimg.onload = function () {
+                myGameArea.context.drawImage(winimg, 300, 300)
+            };
+        } else {
+            aliveBills = [];
+            enemysList = [];
+            startGame();
+            gamesLeft--;
+            myGameArea.stop();
+        }
+    }
+    else{
+        myGameArea.context.fill()
         myGameArea.context.fillStyle = "white";
         myGameArea.context.font = "bold 80px Arial";
-        myGameArea.context.fillText("You Win!",112,212);
-        var winimg = Image();
-        winimg.src = 'imagenes/Winbg.png';
-        winimg.onload = function(){
-            myGameArea.context.drawImage(winimg,300,300)
+        myGameArea.context.fillText("Game Over!", 112, 212);
+        var loseimg = Image();
+        loseimg.src = 'imagenes/Winbg.png';
+        loseimg.onload = function () {
+            myGameArea.context.drawImage(winimg, 300, 300)
         };
-    } else {
-        aliveBills = [];
-        enemysList = [];
-        startGame();
-        gamesLeft--;
-        myGameArea.stop();
+
+
     }
 }

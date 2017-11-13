@@ -1,5 +1,5 @@
 
-
+// CONSTRUCTOR
 function Tanque(posx,posy,ancho,alto,tipo) {
     this.posx = posx;
     this.posy = posy;
@@ -48,15 +48,16 @@ function Tanque(posx,posy,ancho,alto,tipo) {
         if (this.life > 0)
             this.life -= 1;
         else {
+            gameOver(0);
             levelActual[this.posx][this.posy] = null;
             this.die = true;
         }
     };
-
+// GET
     this.getNombre = function () {
         return this.nombre;
     };
-
+// METODO QUE MUEVE EL TANQUE Y REALIZA LAS VALIDACIONES CORRESPONDIENTES. QUE NO EXISTAN COLISIONES.
     this.mover = function(direccion){
          switch (direccion){
              case 1: //izquierds
@@ -172,6 +173,8 @@ function Tanque(posx,posy,ancho,alto,tipo) {
 
     };
 
+
+// METODO QUE DISPARA UNA BALA.
     this.fire = function(){
         if (this.direccion === "LF" && levelActual[this.posx][this.posy-1] === null){
             if (this.nombre === "principal"){

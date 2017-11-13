@@ -1,12 +1,12 @@
 
 
-
+// Constructor
 function Bill(posx,posy,direccion,tipo) {
-    this.posx = posx;
-    this.posy = posy;
-    this.direccion = direccion;
-    this.nombre = "bill";
-    this.image = new Image();
+    this.posx = posx; // Posicion en X
+    this.posy = posy; // Posicion en Y
+    this.direccion = direccion; // Direccion en la que apunta
+    this.nombre = "bill"; // tipo para identificacion
+    this.image = new Image(); // sprite a mostrar
     this.die = false;
 
     if (tipo === 0) {// bala tipo 0: el principal
@@ -35,7 +35,8 @@ function Bill(posx,posy,direccion,tipo) {
             this.image.src = "imagenes/billR.fw.png";
     }
 
-
+// Metodo que se activa cuando la bala colisiona con un objeto. Verifica el objeto sobre el que ha colisionado y genera
+    // la reaccion correspondiente
     this.headshot = function () {
         if ((levelActual[this.posx][this.posy].getNombre() === "inutil" || levelActual[this.posx][this.posy].getNombre() === "rapido" || levelActual[this.posx][this.posy].getNombre() === "tanque" ||levelActual[this.posx][this.posy].getNombre() === "principal")){
             if (levelActual[this.posx][this.posy].life > 0){
@@ -73,11 +74,11 @@ function Bill(posx,posy,direccion,tipo) {
             audiosteel.currentTime = 0;
             audiosteel.play();}
     };
-
+ // GET
     this.getNombre = function () {
         return this.nombre;
     };
-
+// METODO QUE SE ENCARGA DE MOVER LA BALA Y REALIZAR TODAS LAS VERIFICACIONES QUE ESTO IMPLICA
     this.moverB = function(){
             if (this.direccion === "LF") {//izquierds
                 if (levelActual[this.posx - 1][this.posy] === null && this.posx !== 1 && this.die === false) {
